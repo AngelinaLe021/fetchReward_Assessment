@@ -1,9 +1,6 @@
 package models
 
-import (
-	"time"
-	"gorm.io/gorm"
-)
+import "gorm.io/gorm"
 
 // type Purchases struct {
 // 	gorm.Model

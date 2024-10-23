@@ -8,7 +8,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"github.com/AngelinaLe021/fetchReward_Assessment/models"
+	"github.com/AngelinaLe021/fetchReward_Assessment/receipt/models"
 )
 
 type Dbinstance struct {
