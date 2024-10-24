@@ -84,6 +84,7 @@ func Home(c *fiber.Ctx) error {
 	return c.SendString("Hello, Fetch!")
 }
 
+var storeRecord = models.NewRecord()
 
 func ProcessReceipt(c *fiber.Ctx) error {
 	purchase := new(models.Purchases)
@@ -100,26 +101,26 @@ func ProcessReceipt(c *fiber.Ctx) error {
 		Points: pointsEarned,
 	}
 
-	record := models.NewRecord()
-	record.Add(response)
+	storeRecord.Add(response)
 
 	return c.Status(200).JSON(fiber.Map{
 		"id": response.ID,
-		"points": response.Points,
 	})
 }
 
-func Point(c *fiber.Ctx) error {
-	id := c.Params("id")
+func Point(storage *models.Storage) fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		id := c.Params("id")
 
-	record, check := models.Fetch(id)
+		record, check := storeRecord.Fetch(id)
 	
-	if !check {
-		return c.Status(404).JSON(fiber.Map{ "error": "Receipt not found." })
-	}
+		if !check {
+			return c.Status(404).JSON(fiber.Map{ "error": "Receipt not found." })
+		}
 
-	return c.Status(200).JSON(fiber.Map{
-		"points": record.Points,
-	})
+		return c.Status(200).JSON(fiber.Map{
+			"points": record.Points,
+		})
+	}
 }
 
