@@ -1,4 +1,4 @@
-package repo_test
+package logic_test
 
 import (
 	"testing"
