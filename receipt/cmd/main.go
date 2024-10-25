@@ -6,7 +6,6 @@ import (
 
 
 func main() {
-	// database.ConnectDb()
 	app := fiber.New()
 
 	setupRoutes(app)

@@ -1,25 +1,16 @@
 package models
 
-import (
-	"gorm.io/gorm"
-)
-
 type Purchases struct {
-	gorm.Model
-	// ID uint `gorm:"primaryKey`
-	Retailer string  `json:"retailer" gorm:"varchar(225);not null;default:null` 
-	PurchaseDate string `json:"purchaseDate" gorm:"type:date"`
-	PurchaseTime string `json:"purchaseTime" gorm:"type:time`
-	Items  []Item `json:"items" gorm:"foreignKey:PurchaseID`
-	Total string `json:"total" gorm:"type:varchar(225);not null;default:0.0`
+	Retailer string  `json:"retailer"` 
+	PurchaseDate string `json:"purchaseDate"`
+	PurchaseTime string `json:"purchaseTime"`
+	Items  []Item `json:"items"`
+	Total string `json:"total"`
 }
 
 type Item struct {
-	gorm.Model
-	// ID uint `gorm:"primaryKey"`
-	// PurchaseID uint `json:"purchaseId" gorm:not null`
-	ShortDescription string `json:"shortDescription" gorm:"type:varchar(225);not null`
-	Price string `json:"price" gorm:"type:varchar(225);not null`
+	ShortDescription string `json:"shortDescription"`
+	Price string `json:"price"`
 }
 
 type Response struct {
